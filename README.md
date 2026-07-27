@@ -4,7 +4,7 @@ Personal [Agent Skills](https://github.com/vercel-labs/skills) I use with Claude
 
 | Skill | What it does |
 |---|---|
-| `kc-create-pr` | Ships finished work — branches from `origin/main`, commits, pushes, and opens a PR. Expects a Jira ticket in conversation context. |
+| `create-pr` | Ships finished work — branches from `origin/main`, commits, pushes, and opens a PR. Expects a Jira ticket in conversation context. |
 | `tlr-widget-studio-context` | Loads TLR widget studio docs (glossary, spec, and task-relevant references) at the start of a reporting-widget session. Only works inside the `cbdev` repo. |
 
 ## Install
@@ -24,7 +24,7 @@ npx skills add kokchuan101/personal-skills
 Pick a single skill:
 
 ```bash
-npx skills add kokchuan101/personal-skills --skill kc-create-pr --global
+npx skills add kokchuan101/personal-skills --skill create-pr --global
 ```
 
 Useful flags:
@@ -39,7 +39,7 @@ Useful flags:
 ```bash
 npx skills list                 # what's installed
 npx skills update               # pull latest versions
-npx skills remove kc-create-pr  # uninstall
+npx skills remove create-pr     # uninstall
 ```
 
 ## Manual install
@@ -47,7 +47,7 @@ npx skills remove kc-create-pr  # uninstall
 No CLI needed — each skill is a single self-contained `SKILL.md`:
 
 ```bash
-cp -R kc-create-pr ~/.claude/skills/
+cp -R create-pr ~/.claude/skills/
 ```
 
 ## Adding a skill here
