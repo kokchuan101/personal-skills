@@ -66,4 +66,4 @@ After grilling, produce:
 
 Each AC should be specific enough to implement without further clarification.
 
-Save the decision log and refined ACs to `documentation/docs/features/{feature-name}/`.
+Ask the user whether the decision log and refined ACs should be saved to disk (e.g. `documentation/docs/features/{feature-name}/`). Only save if they confirm.

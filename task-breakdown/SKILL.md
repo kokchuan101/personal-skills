@@ -73,4 +73,4 @@ Run a `/grilling` session on the proposed breakdown. Question the structure:
 
 List stories with their tier tickets. For each ticket, show Context and Acceptance Criteria.
 
-Save the ticket breakdown to `documentation/docs/features/{feature-name}/` alongside any existing ACs or decision logs for the feature.
+Ask the user whether the ticket breakdown should be saved to disk (e.g. `documentation/docs/features/{feature-name}/`, alongside any existing ACs or decision logs for the feature). Only save if they confirm.
