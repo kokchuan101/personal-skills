@@ -5,8 +5,8 @@ Personal [Agent Skills](https://github.com/vercel-labs/skills) I use with Claude
 | Skill | What it does |
 |---|---|
 | `create-pr` | Ships finished work — branches from `origin/main`, commits, pushes, and opens a PR. Expects a Jira ticket in conversation context. |
-| `outlining-task` | Turns a feature idea into refined acceptance criteria through codebase exploration and structured grilling, before implementation starts. |
-| `task-breakdown` | Breaks refined acceptance criteria into Jira tickets organized by user story and tier. |
+| `outlining-task` | Turns a feature idea into outcome-framed acceptance criteria plus an ordered sequence of named deliverables, before implementation starts. |
+| `task-breakdown` | Slices a deliverables sequence into Jira tickets — vertical or horizontal, each prefixed with the deliverable it ships and grouped in delivery order. |
 | `tlr-widget-studio-context` | Loads TLR widget studio docs (glossary, spec, and task-relevant references) at the start of a reporting-widget session. Only works inside the `cbdev` repo. |
 
 ## Install
