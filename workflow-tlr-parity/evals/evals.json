@@ -1,0 +1,51 @@
+{
+  "skill_name": "workflow-tlr-parity",
+  "evals": [
+    {
+      "id": 1,
+      "name": "matrix-discovery",
+      "prompt": "We re-implemented the legacy workflow filter builder in the TLR widget studio (the code is already on this branch). Before we ship I want confidence we didn't silently change behavior: work out what the legacy builder does for filter operator availability and comparator controls, compare it against the TLR implementation, and write up your findings as a reviewable document — including anything that deliberately differs. Code reading only; you do not have a running environment.",
+      "expected_output": "A parity matrix document: per-field-kind operator tables (legacy vs TLR), comparator control per operator with stored value shapes, a numbered deliberate-divergence list, engine consulted as arbiter, provenance marked per row (code-read vs live-verified). Graded against ground-truth/parity-filters-legacy-vs-tlr.md.",
+      "files": [],
+      "assertions": [
+        "Produces a markdown parity document with tables comparing legacy and TLR per field kind, citing source file paths on both sides",
+        "Operator-availability coverage spans date, number, user, boolean, string/text, and enumerated (SEL/RAD options) field kinds",
+        "Covers comparator controls as a second dimension: which control renders per operator and the stored value shape (e.g. date range string, [me] as number 0)",
+        "Records deliberate divergences as an explicit numbered do-not-fix list (ground truth has 5; at least 3 identified, including user single-vs-multi)",
+        "Consults the engine/validator as arbiter (references server stats repository or validator reporting-engine schemas), not just the two UIs",
+        "Identifies the FILE/DOC excluded-from-filters-but-kept-as-columns split",
+        "Marks verification provenance honestly (code-read vs live-verified) instead of implying everything was verified"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "pin-matrix-tests",
+      "prompt": "Here is a parity matrix documenting the workflow filter behavior we must not regress (path provided as input file). Pin this behavior with unit tests in the TLR widget studio Filters tab. Extend the existing suites — do not duplicate coverage that already exists or rewrite passing tests. Run the tests and report what you could and could not cover.",
+      "expected_output": "New/extended vitest suites under widgetStudio/entities/workflow/SidePanel/tabs/FiltersTab grouped by matrix rows (per system field, per field type), pairing each operator with its comparator control, green scoped run, plus a report of uncoverable matrix cells.",
+      "files": ["ground-truth/parity-filters-legacy-vs-tlr.md"],
+      "assertions": [
+        "New tests are grouped by matrix rows (describe blocks per system field and per field type), not by function under test",
+        "Assertions pair each operator with its resolved comparator control and check operator list content AND order",
+        "Existing coverage was inventoried first and new tests do not restate existing single-function assertions",
+        "Fixtures use server-real shapes (reuses MOCK_DISCOVERED_FIELDS or equivalent; SEL/RAD as string dataType + options, not a synthetic options dataType)",
+        "The scoped vitest run over the touched suites is green",
+        "Reports matrix cells NOT unit-coverable, with where each is covered instead"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "verification-loop",
+      "prompt": "I'm starting parity work on the pie chart in the TLR widget studio. Before I write any code, set me up with the verification loop I should use while developing — how do I verify my changes at every level, from per-edit checks up to CI regression. Write it up as a doc I can follow.",
+      "expected_output": "A three-tier verification loop doc with correct repo-specific facts: scoped vitest inner loop, host dev server :8089 (not Kong) middle loop with validator restart + plural studio route + preview payload assertions, Playwright outer loop.",
+      "files": [],
+      "assertions": [
+        "Defines three tiers: fast per-edit tests, interactive live verification, CI regression",
+        "Inner tier gives a scoped vitest command targeting the widgetStudio workflow path (not the whole client suite)",
+        "Middle tier directs to the host dev server http://localhost:8089 and warns that Kong serves a stale container bundle on macOS",
+        "Middle tier includes restarting the validator container after validator edits",
+        "Uses the plural /app/reporting/widgets/<id>/studio route for the TLR studio",
+        "Verifies via POST /api/v2/reporting/widgets/:id/preview payloads rather than rendered pixels"
+      ]
+    }
+  ]
+}

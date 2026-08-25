@@ -8,6 +8,7 @@ Personal [Agent Skills](https://github.com/vercel-labs/skills) I use with Claude
 | `outlining-task` | Turns a feature idea into outcome-framed acceptance criteria plus an ordered sequence of named deliverables, before implementation starts. |
 | `task-breakdown` | Slices a deliverables sequence into Jira tickets — vertical or horizontal, each prefixed with the deliverable it ships and grouped in delivery order. |
 | `tlr-widget-studio-context` | Loads TLR widget studio docs (glossary, spec, and task-relevant references) at the start of a reporting-widget session. Only works inside the `cbdev` repo. |
+| `workflow-tlr-parity` | Verifies and pins behavior parity when re-implementing a legacy Checkbox feature in the TLR widget studio — parity matrix, divergence record, matrix-grouped tests, three-tier verification loop. Only works inside the `cbdev` repo. |
 
 ## Install
 
@@ -46,11 +47,15 @@ npx skills remove create-pr     # uninstall
 
 ## Manual install
 
-No CLI needed — each skill is a single self-contained `SKILL.md`:
+No CLI needed — copy the skill directory across:
 
 ```bash
 cp -R create-pr ~/.claude/skills/
 ```
+
+Most skills are a single self-contained `SKILL.md`; `workflow-tlr-parity` also
+ships `references/`, `assets/`, and `evals/` alongside it, so copy the whole
+directory.
 
 ## Adding a skill here
 
